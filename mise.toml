@@ -1,0 +1,17 @@
+[tools]
+node = "24.21.0"
+uv = "0.12.17"
+
+[env]
+# 所有快取與瀏覽器都放在專案內，不寫入全域
+npm_config_cache = "{{config_root}}/.cache/npm"
+UV_CACHE_DIR = "{{config_root}}/.cache/uv"
+UV_PYTHON_INSTALL_DIR = "{{config_root}}/.cache/uv-python"
+PLAYWRIGHT_BROWSERS_PATH = "{{config_root}}/.cache/ms-playwright"
+DISABLE_TELEMETRY = "1"
+DO_NOT_TRACK = "1"
+_.path = ["{{config_root}}/node_modules/.bin"]
+
+[tasks.build]
+description = "產生 web/index.html 與 output/handbook.pdf"
+run = "node scripts/build.mjs"

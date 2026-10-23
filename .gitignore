@@ -1,0 +1,13 @@
+# 專案內快取（mise.toml 指定）
+.cache/
+node_modules/
+
+# 第三方 skills 以 skills-lock.json 還原，不進版控
+.claude/skills/
+.claude/agents/
+.claude/settings.local.json
+
+# 系統與暫存
+.DS_Store
+*.log
+dist/
