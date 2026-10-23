@@ -22,7 +22,7 @@ brief 原訂每幕 3 版（`scene-0X-v1.png` …），實際每幕只交回 1 �
 | --- | --- | --- | --- | --- | --- |
 | 1 停電 | ✅ | ✅ | ✅ | 採用 | 手機光照臉、筆電已暗、室友剪影坐在上下舖，與旁白一致。 |
 | 2 假訊息 | ✅ | ✅ | ✅ | 採用 | 裹棉被盯手機，聊天泡泡為空白無字；室友在下舖熟睡。 |
-| 3 搶購 | ✅ | ⚠️ | ✅ | 暫用，建議重生 | 貨架底部有類似特定連鎖超商的橘綠紅條紋；主角手上泡麵包裝有無意義的偽文字。其餘無禁止元素。 |
+| 3 搶購 | ✅ | ✅ | ✅ | 採用（重生版） | 第一版貨架有類似特定連鎖超商的橘綠紅條紋、泡麵包裝有偽文字，已依建議 prompt 重生 1 次（2026-10-24）。重生版：騎樓下長長的隊伍、貨架幾乎搬空、抱小孩的媽媽在主角身後，無文字、無品牌色。主角手上是 3 瓶水與 3 包泡麵，旁白寫「兩瓶水」，數量略有出入（見下方待辦）。 |
 | 4 診所 | ✅ | ✅ | ✅ | 採用 | 鐵門拉下、招牌空白；室友以布按住前臂，無血跡。急救盒上的紅十字為一般急救符號。室友是坐著，與 `image_alt`「站在」略有出入（見下方待辦）。 |
 | 5 社區 | ✅ | ⚠️ | ✅ | 採用 | 露營燈、分裝水與毛毯、阿伯遞寫字板，符合旁白。寫字板頂端有極小的偽文字，網頁尺寸下幾乎不可辨。 |
 | 6 燈亮 | ✅ | ✅ | ✅ | 採用 | 日出光、窗台綠色盆栽、手機通知為色塊無字。 |
@@ -31,9 +31,10 @@ brief 原訂每幕 3 版（`scene-0X-v1.png` …），實際每幕只交回 1 �
 
 ## 待重生／待確認
 
-- TODO: 第 3 幕建議重生 1 次，追加：`Remove all text and letters from the image. No brand colors or store logos; plain white shelf edges. Instant noodle packages are plain with no writing.` 若老師不在意細節，現版可直接使用。
+- 第 3 幕已重生（追加 prompt：`Remove all text and letters from the image. No brand colors or store logos; plain white shelf edges. Instant noodle packages are plain with no writing.`）。
+- TODO: 第 3 幕圖中是 3 瓶水，旁白是「兩瓶水」。可接受；若要完全一致，可再重生並追加 `holding exactly two bottles of water`。
 - TODO: 第 4 幕 `image_alt` 建議由 A1 改為「室友坐在拉下鐵門的診所前按著手臂」，以符合圖面。
 
 ## 網頁與 PDF 用圖
 
-原圖每張 2.4–3.3 MB。A6／A7 以原圖縮製為長邊 1600 px 的版本後內嵌，原圖保留在本資料夾不更動。
+原圖每張 2.4–3.3 MB。A6／A7 建置時由 `scripts/build.mjs` 縮成寬 1920 px 的 WebP（品質 80，每張約 120–340 KB）後以 base64 內嵌，原圖保留在本資料夾不更動。

@@ -8,9 +8,13 @@
 
 ```bash
 mise install                 # node、uv
-mise run build               # 產生 web/index.html 與 output/handbook.pdf
+npm ci                       # gsap、lucide-static、marked、sharp、puppeteer-core（皆裝在專案內）
+mise run build               # 從 content/ 產生 web/index.html
 node scripts/check.mjs       # 內容檢查（CI 也跑這個）
+node scripts/capture.mjs     # 整頁截圖到 .impeccable/review/（需本機 Chrome）
 ```
+
+網頁原始碼在 `web/src/`（`tokens.css` 色票與字級、`page.css` 版面、`app.js` 開場與時間軸），`web/index.html` 是建置產物，也是繳交檔。設計脈絡見 `PRODUCT.md` 與 `.impeccable/surfaces/web-index-html.md`。
 
 設計用的 agent skills 不進版控，依 `skills-lock.json` 與下列指令在專案內還原：
 
