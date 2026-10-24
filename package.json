@@ -2,6 +2,10 @@
   "name": "military-project-48h",
   "private": true,
   "homepage": "https://military-project-48h.whyhugo.me/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/whyhugo/military-project-48h"
+  },
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs && node scripts/pdf.mjs && node scripts/package.mjs",
