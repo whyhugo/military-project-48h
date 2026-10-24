@@ -1,6 +1,7 @@
 {
   "name": "military-project-48h",
   "private": true,
+  "homepage": "https://military-project-48h.whyhugo.me/",
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs && node scripts/pdf.mjs && node scripts/package.mjs",
@@ -11,6 +12,7 @@
     "lucide-static": "^1.61.0",
     "marked": "^18.1.1",
     "puppeteer-core": "^25.16.0",
+    "qrcode": "^1.5.4",
     "sharp": "^0.35.5",
     "wrangler": "^4.152.0"
   }
