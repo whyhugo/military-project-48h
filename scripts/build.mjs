@@ -4,6 +4,7 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { createRequire } from "node:module";
 import { marked } from "marked";
 import sharp from "sharp";
+import QRCode from "qrcode";
 
 const require = createRequire(import.meta.url);
 const root = new URL("..", import.meta.url);
@@ -12,6 +13,9 @@ const read = (p) => readFileSync(path(p), "utf8");
 const readPkg = (p) => readFileSync(require.resolve(p), "utf8");
 
 const data = JSON.parse(read("content/scenes.json"));
+// 網頁版的正式網址（Cloudflare Workers），PDF 用它導向互動版
+const SITE = JSON.parse(read("package.json")).homepage;
+const siteLabel = SITE.replace(/^https?:\/\//, "").replace(/\/$/, "");
 const scenes = data.scenes;
 
 // 每幕的光與構圖：地色、光源跟著劇情走，圖的大小與位置跟著光變
@@ -185,6 +189,11 @@ async function build() {
 <title>${esc(data.title)}｜斷線 48 小時</title>
 <meta name="description" content="一位大學生在原因不明的停電與斷網中度過 48 小時：6 幕 AI 圖文策展，對照全民安全指引的準備方法。">
 <meta name="color-scheme" content="dark light">
+<link rel="canonical" href="${esc(SITE)}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="${esc(SITE)}">
+<meta property="og:title" content="${esc(data.title)}">
+<meta property="og:description" content="一位大學生在原因不明的停電與斷網中度過 48 小時：6 幕 AI 圖文策展，對照全民安全指引的準備方法。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Noto+Serif+TC:wght@700&display=swap">
@@ -297,16 +306,19 @@ ${scenes.map((s, i) => sceneHtml(s, i, images[i])).join("\n")}
   const kb = (n) => `${(n / 1024).toFixed(0)} KB`;
   console.log(`✓ web/index.html ${kb(Buffer.byteLength(html))}（圖片 ${images.map((im) => `${kb(im.bytes)}${im.cropped ? "，已裁紙邊" : ""}`).join("、")}）`);
 
-  const print = printHtml({ images, intro, reflection, statement, refs, checked });
+  // QR code：米白底、夜藍模組，掃描最穩定
+  const qr = await QRCode.toString(SITE, { type: "svg", margin: 0, errorCorrectionLevel: "M", color: { dark: "#1F2A44", light: "#F5EFE6" } });
+  const print = printHtml({ images, intro, reflection, statement, refs, checked, qr });
   mkdirSync(path(".cache/print"), { recursive: true });
   writeFileSync(path(".cache/print/handbook.html"), print);
   console.log("✓ .cache/print/handbook.html（PDF 版面，交給 scripts/pdf.mjs 輸出）");
 }
 
 // ───────── A7：A4 橫式 PDF 的版面，內容與網頁相同 ─────────
-function printHtml({ images, intro, reflection, statement, refs, checked }) {
+function printHtml({ images, intro, reflection, statement, refs, checked, qr }) {
   const total = scenes.length + 5;
-  const folio = (n) => `<footer class="folio">本作品圖像由 AI 生成，情境為虛構。<span>${n} / ${total}</span></footer>`;
+  const folio = (n) => `<footer class="folio"><span>本作品圖像由 AI 生成，情境為虛構。</span><a href="${esc(SITE)}">網頁版 ${esc(siteLabel)}</a><span class="folio__n">${n} / ${total}</span></footer>`;
+  const webCard = (note) => `<a class="web-card" href="${esc(SITE)}"><span class="web-card__qr" aria-hidden="true">${qr.replace("<svg", '<svg role="img"')}</span><span class="web-card__text"><strong>掃描或點選，體驗網頁版</strong><span>${note}</span><span class="web-card__url">${esc(siteLabel)}</span></span></a>`;
   const hours = scenes.map((s) => hourOf(s.time));
 
   const strip = (i) => `<div class="strip" aria-hidden="true"><b style="width: ${((hours[i] / 48) * 100).toFixed(2)}%"></b>${hours
@@ -347,8 +359,11 @@ ${css}
 <section class="sheet sheet--cover" data-light="dusk">
   <div class="cover-art">${introSvg()}</div>
   <div class="cover-meta">
-    <p>一位大學生，在原因不明的停電與斷網裡度過 48 小時。</p>
-    <p>《斷線 48 小時》全民國防導論期中創作<br>國立臺灣師範大學 王修佑，2026 年 10 月</p>
+    <div>
+      <p class="cover-meta__lede">一位大學生，在原因不明的停電與斷網裡度過 48 小時。</p>
+      <p class="cover-meta__by">《斷線 48 小時》全民國防導論期中創作<br>國立臺灣師範大學 王修佑，2026 年 10 月</p>
+    </div>
+    ${webCard("10 秒開場動畫，捲動時光線跟著 48 小時變化")}
   </div>
 </section>
 
@@ -382,6 +397,7 @@ ${scenes.map(sceneSheet).join("\n")}
         <span>圖像：Google Gemini；文字協作：Claude。字體 Noto Serif TC、Noto Sans TC（SIL Open Font License），圖示 Lucide。${checked ? `連結查核日期：${esc(checked)}。` : ""}</span>
         <span>網頁版內容與本 PDF 相同，另含 10 秒開場動畫與捲動時間軸。</span>
       </div>
+      ${webCard("開場動畫與捲動時間軸只在網頁版")}
     </div>
   </div>
   ${folio(scenes.length + 5)}
