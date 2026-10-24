@@ -15,6 +15,20 @@ const browser = await puppeteer.launch({ executablePath: chrome, headless: true,
 const page = await browser.newPage();
 await page.goto(src.href, { waitUntil: "networkidle0", timeout: 120000 });
 await page.evaluate(() => document.fonts.ready);
+// 封面是開場動畫的最後一格：CSS 動畫由 print.css 歸零，SMIL 的變暗遮罩要另外把 SVG 時間軸跳到 10 秒
+const cover = await page.evaluate(() => {
+  const svg = document.getElementById("intro-svg");
+  svg.pauseAnimations();
+  svg.setCurrentTime(10);
+  const overlay = svg.querySelector("rect > animate[attributeName='opacity']")?.parentElement;
+  return {
+    titles: [...svg.querySelectorAll(".iv-t1, .iv-t2, .iv-t3")].map((el) => Number(getComputedStyle(el).opacity)),
+    overlay: overlay ? Number(getComputedStyle(overlay).opacity) : null,
+  };
+});
+if (cover.titles.some((o) => o < 1) || (cover.overlay !== null && cover.overlay < 0.5)) {
+  throw new Error(`封面不是開場的最後一格：片名不透明度 ${cover.titles.join("、")}，遮罩 ${cover.overlay}`);
+}
 const fonts = await page.evaluate(() => [...document.fonts].filter((f) => f.status === "loaded").map((f) => f.family));
 mkdirSync(new URL("output/", root), { recursive: true });
 await page.pdf({ path: fileURLToPath(out), width: "297mm", height: "210mm", printBackground: true, preferCSSPageSize: true });
