@@ -1,0 +1,50 @@
+:root {
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
+  --text-xs: 0.8125rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.25rem; --text-xl: 1.5625rem; --text-2xl: 1.953rem; --text-3xl: 2.441rem;
+  --text-display-s: clamp(2.25rem, 4vw + 0.5rem, 3.75rem); --text-display: clamp(2.75rem, 4.6vw + 1rem, 5.5rem);
+  --text-section: clamp(2rem, 2.5vw + 1rem, 3.5rem); --text-title: clamp(1.25rem, 0.75vw + 0.875rem, 1.625rem); --text-lead: clamp(1.125rem, 0.35vw + 1rem, 1.3125rem);
+  --text-cover: clamp(2.75rem, 7.2vw, 7.5rem); --text-clock: clamp(1.75rem, 1.2vw + 1.25rem, 2.25rem); --text-time: clamp(3rem, 5vw + 1rem, 6rem);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-in: cubic-bezier(0.7, 0, 0.84, 0); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
+  --color-error: oklch(52% 0.19 27); --color-success: oklch(50% 0.12 150);
+  --container: 1180px; --measure: var(--container); --rail-w: 184px; --gutter: 64px; --gap-columns: 40px; --section-gap-s: 120px; --section-gap: 160px; --section-gap-l: 200px;
+  --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
+
+  /* brief 第 3 節色票：夜藍、燭光橘、米白、霧灰、希望綠 */
+  --brand-night: oklch(28.8% 0.050 265.9);
+  --brand-candle: oklch(78.5% 0.129 63.9);
+  --brand-cream: oklch(95.4% 0.014 78.3);
+  --brand-fog: oklch(64.9% 0.015 262.4);
+  --brand-hope: oklch(66.7% 0.082 150.3);
+
+  /* 光：每一幕的地色 */
+  --ground-void: oklch(17.5% 0.032 266);
+  --ground-night: oklch(23% 0.046 266);
+  --ground-dusk: var(--brand-night);
+  --ground-overcast: oklch(38.5% 0.030 252);
+  --ground-dawn: var(--brand-cream);
+
+  /* 各段光線下的變體 */
+  --overcast-paper-2: oklch(34% 0.028 252); --overcast-shade: oklch(24% 0.03 252); --overcast-muted: oklch(84% 0.012 252);
+  --dawn-ink-2: oklch(34% 0.04 265); --dawn-muted: oklch(45% 0.016 262); --dawn-paper-2: oklch(91.5% 0.016 78);
+  --dawn-hope: oklch(44% 0.08 150); --dawn-focus: oklch(56% 0.18 58); --dawn-shade: oklch(82% 0.02 78); --dawn-ember: oklch(52% 0.12 58);
+  --accent-hover: oklch(83% 0.13 66); --accent-press: oklch(74% 0.13 62);
+
+  /* 光源：只在該幕出現的柔光，位置對著圖的方向 */
+  --glow-phone: radial-gradient(ellipse 46% 40% at 64% 48%, oklch(80% 0.05 235 / 0.20), transparent 72%);
+  --glow-phone-dim: radial-gradient(ellipse 30% 30% at 38% 46%, oklch(80% 0.05 235 / 0.11), transparent 70%);
+  --glow-lantern: radial-gradient(ellipse 55% 45% at 60% 62%, oklch(78% 0.13 64 / 0.30), transparent 72%);
+  --glow-sunrise: radial-gradient(ellipse 80% 55% at 18% 0%, oklch(88% 0.09 70 / 0.55), transparent 70%);
+
+  --color-paper: var(--brand-night); --color-paper-2: oklch(25.5% 0.046 266); --color-paper-3: oklch(33% 0.044 265);
+  --color-ink: var(--brand-cream); --color-ink-2: oklch(88% 0.014 78); --color-muted: oklch(78% 0.013 262);
+  --color-rule: var(--brand-fog);
+  --color-accent: var(--brand-candle); --color-accent-ink: var(--brand-night); --color-focus: oklch(80% 0.18 64);
+  --color-hope: var(--brand-hope);
+  --color-shade: var(--ground-void);
+  --font-display: "Noto Serif TC", "Noto Serif CJK TC", "Songti TC", ui-serif, serif;
+  --font-body: "Noto Sans TC", "Noto Sans CJK TC", "PingFang TC", ui-sans-serif, system-ui, sans-serif;
+  --font-outlier: var(--font-body);
+  --radius-card: 4px; --radius-pill: 999px; --rule-hair: 1px; --shadow-card: none;
+  --tracking-display: -0.02em;
+}

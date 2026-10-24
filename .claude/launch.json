@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "handbook",
+      "runtimeExecutable": "mise",
+      "runtimeArgs": ["exec", "--", "uv", "run", "--no-project", "python", "-m", "http.server", "4848", "--bind", "127.0.0.1", "--directory", "web"],
+      "port": 4848
+    }
+  ]
+}

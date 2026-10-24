@@ -1,0 +1,44 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    env:
+      CHROME_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v2
+      - name: 安裝相依套件
+        run: npm ci
+      - name: 內容檢查
+        run: node scripts/check.mjs
+      - name: 建置網頁、PDF 與繳交包
+        run: npm run build
+      - name: 網頁與 PDF 內容一致
+        run: uv run --no-project --with pypdfium2 python -I scripts/qa_content.py
+      - name: 離線開啟
+        run: node scripts/qa_offline.mjs
+      - name: 往上捲時光層不閃現
+        run: node scripts/qa_scrollback.mjs
+      - name: Cloudflare 部署設定試跑
+        run: npx wrangler deploy --dry-run
+        env:
+          WRANGLER_SEND_METRICS: "false"
+      - name: 單檔檢查
+        run: |
+          size=$(stat -c %s web/index.html)
+          echo "web/index.html: $size bytes"
+          test "$size" -lt 20000000
+          ! grep -Eo '(src|href)="(\./|\.\./)?(visual|motion|content)/' web/index.html
+      - uses: actions/upload-artifact@v4
+        with:
+          name: submission
+          path: output/submission/

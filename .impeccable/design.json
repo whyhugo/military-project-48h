@@ -1,0 +1,660 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-23T18:12:28+00:00",
+  "title": "Design System: 平常的一天，不平常的 48 小時",
+  "extensions": {
+    "colorMeta": {
+      "brand-night": {
+        "role": "neutral",
+        "displayName": "夜藍 Night",
+        "canonical": "oklch(28.8% 0.050 265.9)",
+        "tonalRamp": [
+          "oklch(15% 0.050 265.9)",
+          "oklch(25% 0.050 265.9)",
+          "oklch(35% 0.050 265.9)",
+          "oklch(45% 0.050 265.9)",
+          "oklch(55% 0.050 265.9)",
+          "oklch(68% 0.050 265.9)",
+          "oklch(82% 0.050 265.9)",
+          "oklch(95% 0.050 265.9)"
+        ]
+      },
+      "brand-candle": {
+        "role": "primary",
+        "displayName": "燭光橘 Candle",
+        "canonical": "oklch(78.5% 0.129 63.9)",
+        "tonalRamp": [
+          "oklch(15% 0.129 63.9)",
+          "oklch(25% 0.129 63.9)",
+          "oklch(35% 0.129 63.9)",
+          "oklch(45% 0.129 63.9)",
+          "oklch(55% 0.129 63.9)",
+          "oklch(68% 0.129 63.9)",
+          "oklch(82% 0.129 63.9)",
+          "oklch(95% 0.129 63.9)"
+        ]
+      },
+      "brand-cream": {
+        "role": "neutral",
+        "displayName": "米白 Cream",
+        "canonical": "oklch(95.4% 0.014 78.3)",
+        "tonalRamp": [
+          "oklch(15% 0.014 78.3)",
+          "oklch(25% 0.014 78.3)",
+          "oklch(35% 0.014 78.3)",
+          "oklch(45% 0.014 78.3)",
+          "oklch(55% 0.014 78.3)",
+          "oklch(68% 0.014 78.3)",
+          "oklch(82% 0.014 78.3)",
+          "oklch(95% 0.014 78.3)"
+        ]
+      },
+      "brand-fog": {
+        "role": "neutral",
+        "displayName": "霧灰 Fog",
+        "canonical": "oklch(64.9% 0.015 262.4)",
+        "tonalRamp": [
+          "oklch(15% 0.015 262.4)",
+          "oklch(25% 0.015 262.4)",
+          "oklch(35% 0.015 262.4)",
+          "oklch(45% 0.015 262.4)",
+          "oklch(55% 0.015 262.4)",
+          "oklch(68% 0.015 262.4)",
+          "oklch(82% 0.015 262.4)",
+          "oklch(95% 0.015 262.4)"
+        ]
+      },
+      "brand-hope": {
+        "role": "secondary",
+        "displayName": "希望綠 Hope",
+        "canonical": "oklch(66.7% 0.082 150.3)",
+        "tonalRamp": [
+          "oklch(15% 0.082 150.3)",
+          "oklch(25% 0.082 150.3)",
+          "oklch(35% 0.082 150.3)",
+          "oklch(45% 0.082 150.3)",
+          "oklch(55% 0.082 150.3)",
+          "oklch(68% 0.082 150.3)",
+          "oklch(82% 0.082 150.3)",
+          "oklch(95% 0.082 150.3)"
+        ]
+      },
+      "ground-void": {
+        "role": "neutral",
+        "displayName": "虛空 Void",
+        "canonical": "oklch(17.5% 0.032 266)",
+        "tonalRamp": [
+          "oklch(15% 0.032 266)",
+          "oklch(25% 0.032 266)",
+          "oklch(35% 0.032 266)",
+          "oklch(45% 0.032 266)",
+          "oklch(55% 0.032 266)",
+          "oklch(68% 0.032 266)",
+          "oklch(82% 0.032 266)",
+          "oklch(95% 0.032 266)"
+        ]
+      },
+      "ground-night": {
+        "role": "neutral",
+        "displayName": "深夜 Night Deep",
+        "canonical": "oklch(23% 0.046 266)",
+        "tonalRamp": [
+          "oklch(15% 0.046 266)",
+          "oklch(25% 0.046 266)",
+          "oklch(35% 0.046 266)",
+          "oklch(45% 0.046 266)",
+          "oklch(55% 0.046 266)",
+          "oklch(68% 0.046 266)",
+          "oklch(82% 0.046 266)",
+          "oklch(95% 0.046 266)"
+        ]
+      },
+      "ground-overcast": {
+        "role": "neutral",
+        "displayName": "陰天石板 Overcast",
+        "canonical": "oklch(38.5% 0.030 252)",
+        "tonalRamp": [
+          "oklch(15% 0.030 252)",
+          "oklch(25% 0.030 252)",
+          "oklch(35% 0.030 252)",
+          "oklch(45% 0.030 252)",
+          "oklch(55% 0.030 252)",
+          "oklch(68% 0.030 252)",
+          "oklch(82% 0.030 252)",
+          "oklch(95% 0.030 252)"
+        ]
+      },
+      "paper-2": {
+        "role": "neutral",
+        "displayName": "夜藍次層 Paper 2",
+        "canonical": "oklch(25.5% 0.046 266)",
+        "tonalRamp": [
+          "oklch(15% 0.046 266)",
+          "oklch(25% 0.046 266)",
+          "oklch(35% 0.046 266)",
+          "oklch(45% 0.046 266)",
+          "oklch(55% 0.046 266)",
+          "oklch(68% 0.046 266)",
+          "oklch(82% 0.046 266)",
+          "oklch(95% 0.046 266)"
+        ]
+      },
+      "paper-3": {
+        "role": "neutral",
+        "displayName": "夜藍三層 Paper 3",
+        "canonical": "oklch(33% 0.044 265)",
+        "tonalRamp": [
+          "oklch(15% 0.044 265)",
+          "oklch(25% 0.044 265)",
+          "oklch(35% 0.044 265)",
+          "oklch(45% 0.044 265)",
+          "oklch(55% 0.044 265)",
+          "oklch(68% 0.044 265)",
+          "oklch(82% 0.044 265)",
+          "oklch(95% 0.044 265)"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "次要米白 Ink 2",
+        "canonical": "oklch(88% 0.014 78)",
+        "tonalRamp": [
+          "oklch(15% 0.014 78)",
+          "oklch(25% 0.014 78)",
+          "oklch(35% 0.014 78)",
+          "oklch(45% 0.014 78)",
+          "oklch(55% 0.014 78)",
+          "oklch(68% 0.014 78)",
+          "oklch(82% 0.014 78)",
+          "oklch(95% 0.014 78)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "褪灰 Muted",
+        "canonical": "oklch(78% 0.013 262)",
+        "tonalRamp": [
+          "oklch(15% 0.013 262)",
+          "oklch(25% 0.013 262)",
+          "oklch(35% 0.013 262)",
+          "oklch(45% 0.013 262)",
+          "oklch(55% 0.013 262)",
+          "oklch(68% 0.013 262)",
+          "oklch(82% 0.013 262)",
+          "oklch(95% 0.013 262)"
+        ]
+      },
+      "focus": {
+        "role": "primary",
+        "displayName": "聚焦橘 Focus",
+        "canonical": "oklch(80% 0.18 64)",
+        "tonalRamp": [
+          "oklch(15% 0.180 64)",
+          "oklch(25% 0.180 64)",
+          "oklch(35% 0.180 64)",
+          "oklch(45% 0.180 64)",
+          "oklch(55% 0.180 64)",
+          "oklch(68% 0.180 64)",
+          "oklch(82% 0.180 64)",
+          "oklch(95% 0.180 64)"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "燭光亮 Hover",
+        "canonical": "oklch(83% 0.13 66)",
+        "tonalRamp": [
+          "oklch(15% 0.130 66)",
+          "oklch(25% 0.130 66)",
+          "oklch(35% 0.130 66)",
+          "oklch(45% 0.130 66)",
+          "oklch(55% 0.130 66)",
+          "oklch(68% 0.130 66)",
+          "oklch(82% 0.130 66)",
+          "oklch(95% 0.130 66)"
+        ]
+      },
+      "accent-press": {
+        "role": "primary",
+        "displayName": "燭光深 Press",
+        "canonical": "oklch(74% 0.13 62)",
+        "tonalRamp": [
+          "oklch(15% 0.130 62)",
+          "oklch(25% 0.130 62)",
+          "oklch(35% 0.130 62)",
+          "oklch(45% 0.130 62)",
+          "oklch(55% 0.130 62)",
+          "oklch(68% 0.130 62)",
+          "oklch(82% 0.130 62)",
+          "oklch(95% 0.130 62)"
+        ]
+      },
+      "overcast-paper-2": {
+        "role": "neutral",
+        "displayName": "陰天次層",
+        "canonical": "oklch(34% 0.028 252)",
+        "tonalRamp": [
+          "oklch(15% 0.028 252)",
+          "oklch(25% 0.028 252)",
+          "oklch(35% 0.028 252)",
+          "oklch(45% 0.028 252)",
+          "oklch(55% 0.028 252)",
+          "oklch(68% 0.028 252)",
+          "oklch(82% 0.028 252)",
+          "oklch(95% 0.028 252)"
+        ]
+      },
+      "overcast-muted": {
+        "role": "neutral",
+        "displayName": "陰天褪灰",
+        "canonical": "oklch(84% 0.012 252)",
+        "tonalRamp": [
+          "oklch(15% 0.012 252)",
+          "oklch(25% 0.012 252)",
+          "oklch(35% 0.012 252)",
+          "oklch(45% 0.012 252)",
+          "oklch(55% 0.012 252)",
+          "oklch(68% 0.012 252)",
+          "oklch(82% 0.012 252)",
+          "oklch(95% 0.012 252)"
+        ]
+      },
+      "dawn-ink-2": {
+        "role": "neutral",
+        "displayName": "日光次要墨",
+        "canonical": "oklch(34% 0.04 265)",
+        "tonalRamp": [
+          "oklch(15% 0.040 265)",
+          "oklch(25% 0.040 265)",
+          "oklch(35% 0.040 265)",
+          "oklch(45% 0.040 265)",
+          "oklch(55% 0.040 265)",
+          "oklch(68% 0.040 265)",
+          "oklch(82% 0.040 265)",
+          "oklch(95% 0.040 265)"
+        ]
+      },
+      "dawn-muted": {
+        "role": "neutral",
+        "displayName": "日光褪灰",
+        "canonical": "oklch(45% 0.016 262)",
+        "tonalRamp": [
+          "oklch(15% 0.016 262)",
+          "oklch(25% 0.016 262)",
+          "oklch(35% 0.016 262)",
+          "oklch(45% 0.016 262)",
+          "oklch(55% 0.016 262)",
+          "oklch(68% 0.016 262)",
+          "oklch(82% 0.016 262)",
+          "oklch(95% 0.016 262)"
+        ]
+      },
+      "dawn-paper-2": {
+        "role": "neutral",
+        "displayName": "日光次層",
+        "canonical": "oklch(91.5% 0.016 78)",
+        "tonalRamp": [
+          "oklch(15% 0.016 78)",
+          "oklch(25% 0.016 78)",
+          "oklch(35% 0.016 78)",
+          "oklch(45% 0.016 78)",
+          "oklch(55% 0.016 78)",
+          "oklch(68% 0.016 78)",
+          "oklch(82% 0.016 78)",
+          "oklch(95% 0.016 78)"
+        ]
+      },
+      "dawn-hope": {
+        "role": "secondary",
+        "displayName": "日光希望綠",
+        "canonical": "oklch(44% 0.08 150)",
+        "tonalRamp": [
+          "oklch(15% 0.080 150)",
+          "oklch(25% 0.080 150)",
+          "oklch(35% 0.080 150)",
+          "oklch(45% 0.080 150)",
+          "oklch(55% 0.080 150)",
+          "oklch(68% 0.080 150)",
+          "oklch(82% 0.080 150)",
+          "oklch(95% 0.080 150)"
+        ]
+      },
+      "dawn-focus": {
+        "role": "primary",
+        "displayName": "日光聚焦橘",
+        "canonical": "oklch(56% 0.18 58)",
+        "tonalRamp": [
+          "oklch(15% 0.180 58)",
+          "oklch(25% 0.180 58)",
+          "oklch(35% 0.180 58)",
+          "oklch(45% 0.180 58)",
+          "oklch(55% 0.180 58)",
+          "oklch(68% 0.180 58)",
+          "oklch(82% 0.180 58)",
+          "oklch(95% 0.180 58)"
+        ]
+      },
+      "dawn-ember": {
+        "role": "primary",
+        "displayName": "餘燼橘 Ember",
+        "canonical": "oklch(52% 0.12 58)",
+        "tonalRamp": [
+          "oklch(15% 0.120 58)",
+          "oklch(25% 0.120 58)",
+          "oklch(35% 0.120 58)",
+          "oklch(45% 0.120 58)",
+          "oklch(55% 0.120 58)",
+          "oklch(68% 0.120 58)",
+          "oklch(82% 0.120 58)",
+          "oklch(95% 0.120 58)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "封面片名",
+        "purpose": "只用於封面兩行片名。"
+      },
+      "headline": {
+        "displayName": "時刻大字",
+        "purpose": "每幕開頭的時刻，燭光橘，等寬數字。"
+      },
+      "section": {
+        "displayName": "段標題",
+        "purpose": "幕標題、前言與結尾標題。"
+      },
+      "title": {
+        "displayName": "條目標題",
+        "purpose": "目錄條目與小標。"
+      },
+      "clock": {
+        "displayName": "時間軸讀數",
+        "purpose": "固定時間軸的目前時刻。"
+      },
+      "lead": {
+        "displayName": "旁白",
+        "purpose": "每幕第一人稱旁白與封面說明，最寬 30em。"
+      },
+      "body": {
+        "displayName": "內文",
+        "purpose": "內文與策展註解。"
+      },
+      "label": {
+        "displayName": "標籤",
+        "purpose": "幕次資料、來源附註、版記。"
+      }
+    },
+    "lightGrounds": [
+      {
+        "name": "void",
+        "ground": "ground-void",
+        "use": "開場"
+      },
+      {
+        "name": "dusk",
+        "ground": "brand-night",
+        "use": "封面、前言"
+      },
+      {
+        "name": "phone",
+        "ground": "brand-night",
+        "glow": "glow-phone",
+        "use": "00:00"
+      },
+      {
+        "name": "deep",
+        "ground": "ground-night",
+        "glow": "glow-phone-dim",
+        "use": "03:00"
+      },
+      {
+        "name": "overcast",
+        "ground": "ground-overcast",
+        "use": "08:00、14:00"
+      },
+      {
+        "name": "lantern",
+        "ground": "brand-night",
+        "glow": "glow-lantern",
+        "use": "20:00"
+      },
+      {
+        "name": "dawn",
+        "ground": "brand-cream",
+        "glow": "glow-sunrise",
+        "use": "48:00，墨色翻轉"
+      },
+      {
+        "name": "day",
+        "ground": "brand-cream",
+        "use": "反思、聲明、參考資料"
+      }
+    ],
+    "glows": [
+      {
+        "name": "glow-phone",
+        "value": "radial-gradient(ellipse 46% 40% at 64% 48%, oklch(80% 0.05 235 / 0.20), transparent 72%)",
+        "purpose": "00:00 手機冷光"
+      },
+      {
+        "name": "glow-phone-dim",
+        "value": "radial-gradient(ellipse 30% 30% at 38% 46%, oklch(80% 0.05 235 / 0.11), transparent 70%)",
+        "purpose": "03:00 較弱的手機冷光"
+      },
+      {
+        "name": "glow-lantern",
+        "value": "radial-gradient(ellipse 55% 45% at 60% 62%, oklch(78% 0.13 64 / 0.30), transparent 72%)",
+        "purpose": "20:00 露營燈"
+      },
+      {
+        "name": "glow-sunrise",
+        "value": "radial-gradient(ellipse 80% 55% at 18% 0%, oklch(88% 0.09 70 / 0.55), transparent 70%)",
+        "purpose": "48:00 日出"
+      }
+    ],
+    "shadows": [
+      {
+        "name": "shadow-card",
+        "value": "none",
+        "purpose": "系統扁平；深度來自地色與柔光。"
+      },
+      {
+        "name": "quiet-outline",
+        "value": "inset 0 0 0 1px var(--color-rule)",
+        "purpose": "安靜按鈕的描邊，不是陰影。"
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "連結、按鈕狀態轉換。"
+      },
+      {
+        "name": "ease-in",
+        "value": "cubic-bezier(0.7, 0, 0.84, 0)",
+        "purpose": "離場。"
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "雙向轉換。"
+      },
+      {
+        "name": "dur-micro",
+        "value": "120ms",
+        "purpose": "懸停、按下。"
+      },
+      {
+        "name": "dur-short",
+        "value": "220ms",
+        "purpose": "短轉換。"
+      },
+      {
+        "name": "dur-long",
+        "value": "420ms",
+        "purpose": "長轉換。"
+      },
+      {
+        "name": "ground-crossfade",
+        "value": "opacity 1.1s power2.out",
+        "purpose": "地色層依目前段落交叉淡入。"
+      },
+      {
+        "name": "plate-light-up",
+        "value": "filter brightness(0.28) saturate(0.6) → brightness(1) saturate(1), scrub 0.6, top 92% → center 58%",
+        "purpose": "圖片進入視窗時從暗處被點亮。"
+      },
+      {
+        "name": "intro-exit",
+        "value": "opacity 0.6s power2.in",
+        "purpose": "開場動畫 10 秒後或略過時淡出。"
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "40rem"
+      },
+      {
+        "name": "md",
+        "value": "60rem"
+      },
+      {
+        "name": "rail",
+        "value": "72rem"
+      },
+      {
+        "name": "wide",
+        "value": "110rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "開始閱讀連結",
+      "kind": "custom",
+      "refersTo": "link-start",
+      "description": "封面唯一的行動：燭光橘 Serif 文字連結，不是實心按鈕。",
+      "html": "<a class=\"ds-start\" href=\"#\">從 00:00 開始讀</a>",
+      "css": ".ds-start{display:inline-flex;align-items:center;min-height:48px;color:var(--color-accent,oklch(78.5% 0.129 63.9));font-family:\"Noto Serif TC\",serif;font-size:1.5625rem;font-weight:700;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:0.35em;white-space:nowrap;transition:text-decoration-thickness 120ms cubic-bezier(0.16,1,0.3,1),color 120ms cubic-bezier(0.16,1,0.3,1);background:oklch(28.8% 0.050 265.9);padding:0 8px}.ds-start:hover{text-decoration-thickness:2px;color:oklch(83% 0.13 66)}.ds-start:active{color:oklch(74% 0.13 62)}.ds-start:focus-visible{outline:2px solid oklch(80% 0.18 64);outline-offset:2px}"
+    },
+    {
+      "name": "安靜按鈕",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "透明膠囊、1px 霧灰描邊；開場「略過」。",
+      "html": "<div class=\"ds-quiet-wrap\"><button class=\"ds-btn-quiet\">略過</button></div>",
+      "css": ".ds-quiet-wrap{background:oklch(17.5% 0.032 266);padding:16px}.ds-btn-quiet{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 24px;border:0;border-radius:999px;background:transparent;color:oklch(95.4% 0.014 78.3);box-shadow:inset 0 0 0 1px oklch(64.9% 0.015 262.4);font-family:\"Noto Sans TC\",sans-serif;font-size:1rem;font-weight:700;line-height:1;cursor:pointer;transition:transform 120ms cubic-bezier(0.16,1,0.3,1),background-color 120ms cubic-bezier(0.16,1,0.3,1)}.ds-btn-quiet:hover{background:color-mix(in oklab,oklch(95.4% 0.014 78.3) 10%,transparent)}.ds-btn-quiet:active{background:color-mix(in oklab,oklch(95.4% 0.014 78.3) 16%,transparent)}.ds-btn-quiet:focus-visible{outline:2px solid oklch(95.4% 0.014 78.3);outline-offset:3px}"
+    },
+    {
+      "name": "時間軸",
+      "kind": "nav",
+      "refersTo": "rail-stop",
+      "description": "整頁的剖面：時刻讀數、1px 軸線、燭光橘填充與游標、6 個幕次刻度。",
+      "html": "<nav class=\"ds-rail\"><p class=\"ds-rail-clock\">03:00</p><p class=\"ds-rail-now\">最暗的時刻</p><ol class=\"ds-rail-stops\"><li class=\"past\"><a href=\"#\">00:00</a></li><li class=\"now\"><a href=\"#\" aria-current=\"step\">03:00</a></li><li><a href=\"#\">08:00</a></li><li><a href=\"#\">14:00</a></li></ol></nav>",
+      "css": ".ds-rail{background:oklch(28.8% 0.050 265.9);padding:24px 24px 24px 40px;width:184px;color:oklch(95.4% 0.014 78.3)}.ds-rail-clock{margin:0;font-family:\"Noto Serif TC\",serif;font-size:2rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;color:oklch(78.5% 0.129 63.9)}.ds-rail-now{margin:8px 0 24px;font-family:\"Noto Sans TC\",sans-serif;font-size:0.875rem;color:oklch(78% 0.013 262)}.ds-rail-stops{list-style:none;margin:0;padding:0 0 0 0;border-left:1px solid color-mix(in oklab,oklch(64.9% 0.015 262.4) 60%,transparent);margin-left:4px}.ds-rail-stops li{margin-left:-5px;padding:6px 0}.ds-rail-stops a{display:flex;align-items:center;gap:8px;min-height:28px;color:oklch(78% 0.013 262);font-family:\"Noto Serif TC\",serif;font-size:0.875rem;font-weight:700;font-variant-numeric:tabular-nums;text-decoration:none}.ds-rail-stops a::before{content:\"\";width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor;background:oklch(17.5% 0.032 266);flex-shrink:0}.ds-rail-stops .past a::before{background:currentColor}.ds-rail-stops .now a{color:oklch(95.4% 0.014 78.3)}.ds-rail-stops .now a::before{background:oklch(78.5% 0.129 63.9);border-color:oklch(78.5% 0.129 63.9)}.ds-rail-stops a:hover{color:oklch(95.4% 0.014 78.3)}.ds-rail-stops a:focus-visible{outline:2px solid oklch(80% 0.18 64);outline-offset:2px}"
+    },
+    {
+      "name": "幕標頭",
+      "kind": "custom",
+      "refersTo": "scene-time",
+      "description": "時刻大字疊在幕標題上，右側 dl 幕次資料。",
+      "html": "<header class=\"ds-scene-head\"><h2><span class=\"ds-time\">08:00</span><span>架上的最後一箱水</span></h2><dl><div><dt>幕次</dt><dd>第 3 幕</dd></div><div><dt>全民國防面向</dt><dd>物資整備、社會秩序</dd></div></dl></header>",
+      "css": ".ds-scene-head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px;background:oklch(38.5% 0.030 252);color:oklch(95.4% 0.014 78.3);padding:32px}.ds-scene-head h2{margin:0;display:grid;gap:8px;font-family:\"Noto Serif TC\",serif;font-weight:700;font-size:2.5rem;line-height:1.25}.ds-time{font-size:4rem;line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:oklch(78.5% 0.129 63.9)}.ds-scene-head dl{margin:0;display:flex;flex-direction:column;align-items:flex-end;gap:4px;font-family:\"Noto Sans TC\",sans-serif;font-size:0.875rem;color:oklch(84% 0.012 252)}.ds-scene-head dl div{display:flex;gap:8px}.ds-scene-head dd{margin:0;color:oklch(95.4% 0.014 78.3)}"
+    },
+    {
+      "name": "目錄列",
+      "kind": "custom",
+      "refersTo": "timetable-row",
+      "description": "1px 細線清單，燭光橘時刻 + Serif 標題。",
+      "html": "<ol class=\"ds-tt\"><li><a href=\"#\"><time>00:00</time><strong>停電了</strong><small>物資整備、能源韌性</small></a></li><li><a href=\"#\"><time>03:00</time><strong>凌晨三點的訊息</strong><small>資訊辨識、心理防衛</small></a></li></ol>",
+      "css": ".ds-tt{list-style:none;margin:0;padding:0 24px;background:oklch(28.8% 0.050 265.9);color:oklch(95.4% 0.014 78.3);border-top:1px solid oklch(64.9% 0.015 262.4)}.ds-tt li{border-bottom:1px solid color-mix(in oklab,oklch(64.9% 0.015 262.4) 55%,transparent)}.ds-tt a{display:grid;grid-template-columns:5.5em minmax(0,1fr);column-gap:24px;align-items:baseline;padding-block:16px;color:inherit;text-decoration:none}.ds-tt time{font-family:\"Noto Serif TC\",serif;font-size:1.5625rem;font-weight:700;font-variant-numeric:tabular-nums;color:oklch(78.5% 0.129 63.9)}.ds-tt strong{font-family:\"Noto Serif TC\",serif;font-size:1.375rem;line-height:1.4}.ds-tt small{grid-column:2;font-family:\"Noto Sans TC\",sans-serif;font-size:0.875rem;color:oklch(78% 0.013 262)}.ds-tt a:hover strong{text-decoration:underline;text-decoration-color:oklch(78.5% 0.129 63.9);text-underline-offset:0.25em}.ds-tt a:focus-visible{outline:2px solid oklch(80% 0.18 64);outline-offset:2px}"
+    },
+    {
+      "name": "策展註解與來源",
+      "kind": "card",
+      "refersTo": "note",
+      "description": "不是卡片：1px 細線下的側欄區塊，希望綠燈泡標頭與燭光橘底線的來源連結。",
+      "html": "<aside class=\"ds-aside\"><section class=\"ds-note\"><h3><svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5\"/><path d=\"M9 18h6\"/><path d=\"M10 22h4\"/></svg><span>策展註解</span></h3><p>不確定的消息，先用台灣事實查核中心或 Cofacts 查證再說。</p></section><section class=\"ds-note\"><h3 class=\"src\"><span>來源</span></h3><a href=\"#\">國防部《當危機來臨時：臺灣全民安全指引》</a><small>p.19 掌握正確資訊</small></section></aside>",
+      "css": ".ds-aside{display:grid;gap:40px;background:oklch(23% 0.046 266);color:oklch(95.4% 0.014 78.3);padding:24px;font-family:\"Noto Sans TC\",sans-serif;font-size:1rem;line-height:1.8}.ds-note{padding-top:16px;border-top:1px solid oklch(64.9% 0.015 262.4)}.ds-note h3{display:flex;align-items:center;gap:8px;margin:0 0 12px;font-size:1rem;font-weight:700}.ds-note h3 svg{color:oklch(66.7% 0.082 150.3)}.ds-note h3.src{color:oklch(78% 0.013 262)}.ds-note p{margin:0;color:oklch(88% 0.014 78)}.ds-note a{color:oklch(95.4% 0.014 78.3);text-decoration-color:oklch(78.5% 0.129 63.9);text-decoration-thickness:1px;text-underline-offset:0.28em}.ds-note a:hover{text-decoration-thickness:2px}.ds-note a:focus-visible{outline:2px solid oklch(80% 0.18 64);outline-offset:2px}.ds-note small{display:block;font-size:0.875rem;color:oklch(78% 0.013 262);line-height:1.6}"
+    },
+    {
+      "name": "AI 生成標籤",
+      "kind": "chip",
+      "refersTo": "ai-tag",
+      "description": "疊在每張 AI 圖右上的半透明膠囊。",
+      "html": "<div class=\"ds-fig\"><span class=\"ds-ai-tag\">AI 生成</span></div>",
+      "css": ".ds-fig{position:relative;aspect-ratio:1920/1072;width:320px;background:linear-gradient(160deg,oklch(25.5% 0.046 266),oklch(33% 0.044 265))}.ds-ai-tag{position:absolute;top:5%;right:3.5%;padding:4px 12px;border-radius:999px;background:color-mix(in oklab,oklch(17.5% 0.032 266) 78%,transparent);color:oklch(95.4% 0.014 78.3);font-family:\"Noto Sans TC\",sans-serif;font-size:0.8125rem;line-height:1.5}"
+    }
+  ],
+  "narrative": {
+    "northStar": "停電房間裡的光",
+    "overview": "整個系統是一間停電 48 小時的房間，而房間裡唯一會變的是光。頁面沿著時間往下走，地色跟著劇情裡的光源換：從夜藍開始，最暗的 03:00 再沉一階，08:00 與 14:00 轉成陰天的石板藍灰，20:00 回到夜色並亮起露營燈，48:00 燈亮了，整頁翻成米白。光不是裝飾，是敘事本身；每一層柔光都對應旁白裡說出來的那盞燈。\n\n版面是策展手冊式的閱讀節奏：大量留白、慢速、一幕一個時刻。時刻用 Noto Serif TC 粗體大字與等寬數字排出，作為每幕的開頭；第一人稱旁白是主角，策展註解與來源退到 1px 細線下的側欄。左側固定時間軸是整頁的剖面，游標隨捲動在 00:00 到 48:00 之間連續推進。沒有卡片、沒有陰影、沒有實心色塊容器，結構只靠細線、間距與地色變化。\n\n燭光橘是稀有的：它只屬於「光源」與「時間」——時間軸、目前時刻、每幕的時刻大字、目錄時刻、「從 00:00 開始讀」連結，以及連結底線。所有段落文字保持米白（日光段保持夜藍）。",
+    "keyCharacteristics": [
+      "地色即敘事：每段以 `data-light` 宣告光線（void／dusk／phone／deep／lantern／overcast／dawn／day），固定底層交叉淡入。",
+      "燭光橘只標光源與時間，從不用在段落文字或大面積底色。",
+      "Noto Serif TC 700 負責標題與一切時刻；Noto Sans TC 負責內文；所有時刻用等寬數字。",
+      "只用 1px 細線分隔，沒有卡片、沒有陰影。",
+      "每幕在 12 欄格線上依光改變構圖，圖不等大。",
+      "6 張 Gemini 水彩圖統一 1920 × 1072，進入視窗時從暗處被「點亮」。"
+    ],
+    "rules": [
+      {
+        "name": "光源色規則（The Light Source Rule）",
+        "body": "燭光橘只給光源與時間：時間軸、時刻、開始閱讀連結、連結底線。任何段落文字、標題、底色都不用燭光橘。",
+        "section": "colors"
+      },
+      {
+        "name": "一光一地規則（One Light, One Ground Rule）",
+        "body": "每段只宣告一種 `data-light`；地色由光決定，不由元件決定。新段落要先問「此刻房間裡是什麼光」，再選地色。",
+        "section": "colors"
+      },
+      {
+        "name": "燈亮翻轉規則（Lights-On Inversion Rule）",
+        "body": "進入 `dawn`／`day` 時，墨與地整組對調（墨變夜藍、地變米白），並同時切換 muted、hope、focus、shade、時刻色為 dawn 變體；不可只換背景。",
+        "section": "colors"
+      },
+      {
+        "name": "等寬時刻規則（Tabular Time Rule）",
+        "body": "所有時刻（00:00–48:00）一律 Noto Serif TC 700 加 `tabular-nums`，讓游標推進時數字不跳動。",
+        "section": "typography"
+      },
+      {
+        "name": "旁白為主規則（Narration Leads Rule）",
+        "body": "每幕的閱讀順序是時刻 → 標題 → 圖 → 旁白；旁白用 lead 尺寸，註解與來源用 body 以下尺寸，退到細線下的側欄。",
+        "section": "typography"
+      },
+      {
+        "name": "構圖隨光規則（Composition Follows Light Rule）",
+        "body": "不做等大卡片網格；每幕圖的大小與位置由該時刻的光決定，最暗時圖最小，燈亮時圖最大。",
+        "section": "layout"
+      },
+      {
+        "name": "光有出處規則（Every Glow Has a Lamp Rule）",
+        "body": "柔光只在旁白點名的光源出現，固定於該幕的地色層，不做動畫、不作裝飾背景。",
+        "section": "elevation"
+      },
+      {
+        "name": "無陰影規則（No Shadow Rule）",
+        "body": "不用 box-shadow 堆疊層次；唯一的 inset 1px 是安靜按鈕的描邊。",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** 每個新段落先宣告 `data-light`，讓地色與墨色由光線決定。",
+      "**Do** 把燭光橘限定在時間軸、時刻、開始閱讀連結與連結底線；米白地上改用 `dawn-ember`。",
+      "**Do** 所有時刻用 Noto Serif TC 700 加等寬數字。",
+      "**Do** 用 1px 霧灰細線（必要時 50–60% 混透明）分隔註解、來源、目錄與版記。",
+      "**Do** 讓每幕的圖依光改變大小與位置，並在每張 AI 圖右上加「AI 生成」標籤。",
+      "**Do** 讓柔光固定在地色層，對應旁白點名的光源。"
+    ],
+    "donts": [
+      "**Don't** 做「封面加 6 張等大卡片」的展覽模板，也不要把內容放進有底色或陰影的卡片。",
+      "**Don't** 把燭光橘用在段落文字、標題或大面積底色。",
+      "**Don't** 加 box-shadow 或硬邊偏移陰影；深度只來自地色與柔光。",
+      "**Don't** 讓柔光動起來，或在沒有光源的幕加光暈。",
+      "**Don't** 只換背景就進入日光段；墨、muted、hope、focus 要整組翻轉。"
+    ]
+  }
+}
