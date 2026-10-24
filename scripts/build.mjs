@@ -16,6 +16,9 @@ const data = JSON.parse(read("content/scenes.json"));
 // 網頁版的正式網址（Cloudflare Workers），PDF 用它導向互動版
 const SITE = JSON.parse(read("package.json")).homepage;
 const siteLabel = SITE.replace(/^https?:\/\//, "").replace(/\/$/, "");
+// 原始碼（GitHub repo）
+const REPO = JSON.parse(read("package.json")).repository.url;
+const repoLabel = REPO.replace(/^https?:\/\//, "");
 const scenes = data.scenes;
 
 // 每幕的光與構圖：地色、光源跟著劇情走，圖的大小與位置跟著光變
@@ -288,7 +291,7 @@ ${scenes.map((s, i) => sceneHtml(s, i, images[i])).join("\n")}
         <strong>本作品圖像由 AI 生成，情境為虛構。</strong>
         <p>${esc(data.title)}，《斷線 48 小時》全民國防導論期中創作（${esc(data.version)}），國立臺灣師範大學 王修佑。圖像：Google Gemini；文字協作：Claude。</p>
         <p>字體 Noto Serif TC、Noto Sans TC（SIL Open Font License），動畫 GSAP，圖示 Lucide。</p>
-        <p><a href="handbook.pdf">下載 PDF 版（A4 橫式）</a></p>
+        <p class="colophon__links"><a href="handbook.pdf">下載 PDF 版（A4 橫式）</a><a href="${esc(REPO)}" target="_blank" rel="noopener">GitHub 原始碼${icon("external-link")}</a></p>
       </div>
     </div>
   </footer>
@@ -395,7 +398,7 @@ ${scenes.map(sceneSheet).join("\n")}
         <strong>本作品圖像由 AI 生成，情境為虛構。</strong>
         <span>${esc(data.title)}，《斷線 48 小時》全民國防導論期中創作（${esc(data.version)}），國立臺灣師範大學 王修佑。</span>
         <span>圖像：Google Gemini；文字協作：Claude。字體 Noto Serif TC、Noto Sans TC（SIL Open Font License），圖示 Lucide。${checked ? `連結查核日期：${esc(checked)}。` : ""}</span>
-        <span>網頁版內容與本 PDF 相同，另含 10 秒開場動畫與捲動時間軸。</span>
+        <span>網頁版內容與本 PDF 相同，另含 10 秒開場動畫與捲動時間軸。原始碼：<a href="${esc(REPO)}">${esc(repoLabel)}</a></span>
       </div>
       ${webCard("開場動畫與捲動時間軸只在網頁版")}
     </div>

@@ -337,6 +337,9 @@ html[data-now="dawn"] .rail__clock, html[data-now="day"] .rail__clock { color: v
 .colophon__inner { display: grid; gap: var(--space-sm); padding-top: var(--space-lg); border-top: var(--rule-hair) solid var(--color-rule); font-size: var(--text-sm); color: var(--color-muted); }
 .colophon__inner strong { font-size: var(--text-md); color: var(--color-ink); font-weight: 700; }
 .colophon__inner p { max-width: none; }
+.colophon__links { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-lg); }
+.colophon__links a { display: inline-flex; align-items: center; gap: var(--space-3xs); min-height: 44px; }
+.colophon__links .icon { width: 0.9em; height: 0.9em; }
 
 /* 無動畫偏好：保留最終畫面，不跑轉場 */
 @media (prefers-reduced-motion: reduce) {
@@ -710,7 +713,7 @@ html[data-now="dawn"] .rail__clock, html[data-now="day"] .rail__clock { color: v
         <strong>本作品圖像由 AI 生成，情境為虛構。</strong>
         <p>平常的一天，不平常的 48 小時，《斷線 48 小時》全民國防導論期中創作（midterm-1.1），國立臺灣師範大學 王修佑。圖像：Google Gemini；文字協作：Claude。</p>
         <p>字體 Noto Serif TC、Noto Sans TC（SIL Open Font License），動畫 GSAP，圖示 Lucide。</p>
-        <p><a href="handbook.pdf">下載 PDF 版（A4 橫式）</a></p>
+        <p class="colophon__links"><a href="handbook.pdf">下載 PDF 版（A4 橫式）</a><a href="https://github.com/whyhugo/military-project-48h" target="_blank" rel="noopener">GitHub 原始碼<svg aria-hidden="true" focusable="false"class="icon icon-external-link"xmlns="http://www.w3.org/2000/svg"viewBox="0 0 24 24"fill="none"stroke="currentColor"stroke-width="2"stroke-linecap="round"stroke-linejoin="round"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg></a></p>
       </div>
     </div>
   </footer>
