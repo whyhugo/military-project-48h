@@ -11,6 +11,8 @@ permissions:
 jobs:
   ci:
     runs-on: ubuntu-latest
+    env:
+      CHROME_PATH: /usr/bin/google-chrome
     steps:
       - uses: actions/checkout@v4
       - uses: jdx/mise-action@v2
@@ -18,8 +20,12 @@ jobs:
         run: npm ci
       - name: 內容檢查
         run: node scripts/check.mjs
-      - name: 建置網頁手冊
-        run: node scripts/build.mjs
+      - name: 建置網頁、PDF 與繳交包
+        run: npm run build
+      - name: 網頁與 PDF 內容一致
+        run: uv run --no-project --with pypdfium2 python -I scripts/qa_content.py
+      - name: 離線開啟
+        run: node scripts/qa_offline.mjs
       - name: 單檔檢查
         run: |
           size=$(stat -c %s web/index.html)
@@ -28,5 +34,5 @@ jobs:
           ! grep -Eo '(src|href)="(\./|\.\./)?(visual|motion|content)/' web/index.html
       - uses: actions/upload-artifact@v4
         with:
-          name: handbook
-          path: web/index.html
+          name: submission
+          path: output/submission/

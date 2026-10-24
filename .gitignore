@@ -17,3 +17,4 @@ dist/
 web/.hallmark/
 .impeccable/review/
 .impeccable/hook.cache.json
+.wrangler/

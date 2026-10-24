@@ -14,7 +14,7 @@ if (scenes.length !== 6) fail(`scenes.json 應有 6 幕，實際 ${scenes.length
 
 // 不指名國家、不用恐嚇字眼
 const banned = ["中國", "中共", "解放軍", "美國", "日本", "俄羅斯", "敵軍", "入侵", "轟炸", "飛彈", "戰爭爆發", "死亡", "末日"];
-const textFiles = ["content/intro.md", "content/reflection.md"];
+const textFiles = ["content/intro.md", "content/reflection.md", "content/ai-statement.md"];
 
 for (const s of scenes) {
   const n = count(s.narration);
@@ -36,6 +36,11 @@ for (const f of textFiles) {
   const t = read(f);
   for (const w of banned) if (t.includes(w)) fail(`${f} 出現禁用詞「${w}」`);
 }
+
+// AI 使用聲明：工具、用途、提示詞範例
+const statement = existsSync(new URL("content/ai-statement.md", root)) ? read("content/ai-statement.md") : "";
+if (!statement) fail("缺 content/ai-statement.md");
+for (const w of ["Claude", "Gemini", "提示詞範例"]) if (statement && !statement.includes(w)) fail(`AI 使用聲明缺「${w}」`);
 
 if (errors.length) {
   console.error(errors.map((e) => `✗ ${e}`).join("\n"));

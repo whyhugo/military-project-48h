@@ -64,14 +64,17 @@ async function cropPaperMargin(input) {
   // 毛邊大約深入 2%，再往內裁一點
   const inset = hadMargin ? Math.round(w * 0.022) : 0;
   const box = { left: left + inset, top: top + inset, width: right - left + 1 - inset * 2, height: bottom - top + 1 - inset * 2 };
-  const buffer = await sharp(input).extract(box).resize(1920, 1072, { fit: "cover" }).webp({ quality: 80 }).toBuffer();
-  return { buffer, cropped: hadMargin };
+  const plate = sharp(input).extract(box).resize(1920, 1072, { fit: "cover" });
+  const buffer = await plate.clone().webp({ quality: 80 }).toBuffer();
+  // PDF 用 JPEG：Chrome 會原樣嵌入 JPEG，WebP 則會被轉成無損格式，檔案大很多
+  const jpeg = await plate.clone().jpeg({ quality: 84, mozjpeg: true }).toBuffer();
+  return { buffer, jpeg, cropped: hadMargin };
 }
 
 // 圖片：去掉紙邊、統一成 1920 × 1072 的 WebP 後以 base64 內嵌
 async function embedImage(file) {
-  const { buffer, cropped } = await cropPaperMargin(readFileSync(path(file)));
-  return { src: `data:image/webp;base64,${buffer.toString("base64")}`, bytes: buffer.length, cropped };
+  const { buffer, jpeg, cropped } = await cropPaperMargin(readFileSync(path(file)));
+  return { src: `data:image/webp;base64,${buffer.toString("base64")}`, printSrc: `data:image/jpeg;base64,${jpeg.toString("base64")}`, bytes: buffer.length, cropped };
 }
 
 // 開場 SVG：把它內部的 class、id、keyframes 加上前綴，避免和頁面樣式互相干擾
@@ -91,7 +94,10 @@ function introSvg() {
   return svg;
 }
 
-const md = (p) => marked.parse(read(p).replace(/^#\s.*\n/, "").trim());
+// Markdown 轉 HTML：去掉檔案自己的 H1，其餘標題降一級，接在段落的 H2 之下
+const md = (p) => marked.parse(read(p).replace(/^#\s.*\n/, "").trim())
+  .replace(/<(\/?)h([2-5])>/g, (_, slash, n) => `<${slash}h${Number(n) + 1}>`)
+  .replace(/<!--[\s\S]*?-->\s*/g, "");
 
 // 參考資料：合併各幕引用的來源
 function collectSources() {
@@ -222,7 +228,7 @@ ${introSvg()}
           <p class="cover__lede">一位大學生，在原因不明的停電與斷網裡度過 48 小時。</p>
           <p class="cover__actions"><a class="start" href="#scene-01">從 00:00 開始讀</a></p>
         </div>
-        <p class="cover__byline">《斷線 48 小時》全民國防導論期中創作<br>Hugo Wang，2026 年 10 月</p>
+        <p class="cover__byline">《斷線 48 小時》全民國防導論期中創作<br>國立臺灣師範大學 王修佑，2026 年 10 月</p>
       </div>
     </header>
 
@@ -271,8 +277,9 @@ ${scenes.map((s, i) => sceneHtml(s, i, images[i])).join("\n")}
     <div class="wrap">
       <div class="colophon__inner">
         <strong>本作品圖像由 AI 生成，情境為虛構。</strong>
-        <p>${esc(data.title)}，《斷線 48 小時》全民國防導論期中創作（${esc(data.version)}）。圖像：Google Gemini；文字協作：Claude。</p>
+        <p>${esc(data.title)}，《斷線 48 小時》全民國防導論期中創作（${esc(data.version)}），國立臺灣師範大學 王修佑。圖像：Google Gemini；文字協作：Claude。</p>
         <p>字體 Noto Serif TC、Noto Sans TC（SIL Open Font License），動畫 GSAP，圖示 Lucide。</p>
+        <p><a href="handbook.pdf">下載 PDF 版（A4 橫式）</a></p>
       </div>
     </div>
   </footer>
@@ -289,6 +296,99 @@ ${scenes.map((s, i) => sceneHtml(s, i, images[i])).join("\n")}
   writeFileSync(path("web/index.html"), html);
   const kb = (n) => `${(n / 1024).toFixed(0)} KB`;
   console.log(`✓ web/index.html ${kb(Buffer.byteLength(html))}（圖片 ${images.map((im) => `${kb(im.bytes)}${im.cropped ? "，已裁紙邊" : ""}`).join("、")}）`);
+
+  const print = printHtml({ images, intro, reflection, statement, refs, checked });
+  mkdirSync(path(".cache/print"), { recursive: true });
+  writeFileSync(path(".cache/print/handbook.html"), print);
+  console.log("✓ .cache/print/handbook.html（PDF 版面，交給 scripts/pdf.mjs 輸出）");
+}
+
+// ───────── A7：A4 橫式 PDF 的版面，內容與網頁相同 ─────────
+function printHtml({ images, intro, reflection, statement, refs, checked }) {
+  const total = scenes.length + 5;
+  const folio = (n) => `<footer class="folio">本作品圖像由 AI 生成，情境為虛構。<span>${n} / ${total}</span></footer>`;
+  const hours = scenes.map((s) => hourOf(s.time));
+
+  const strip = (i) => `<div class="strip" aria-hidden="true"><b style="width: ${((hours[i] / 48) * 100).toFixed(2)}%"></b>${hours
+    .map((h, j) => `<i class="${j < i ? "past" : j === i ? "now" : ""}" style="left: ${((h / 48) * 100).toFixed(2)}%"></i>`).join("")}</div>`;
+
+  const sceneSheet = (s, i) => {
+    const { light } = STAGE[s.id];
+    const sources = s.sources.map((src) => `<li><a href="${esc(src.url)}">${linkText(src.title)}</a>${src.pages ? `<small>${esc(src.pages)}</small>` : ""}</li>`).join("");
+    return `
+<section class="sheet sheet--scene" data-light="${light}">
+  <div class="body">
+    ${strip(i)}
+    <header class="s-head" style="grid-row: 2"><time>${esc(s.time)}</time><h2>${esc(s.title)}</h2></header>
+    <figure><img src="${images[i].printSrc}" alt="${esc(s.image_alt)}"><span class="ai-tag">AI 生成</span></figure>
+    <div class="s-text">
+      <p class="s-meta">第 ${i + 1} 幕<br>全民國防面向　<b>${esc(s.pillar)}</b></p>
+      <p class="narration">${esc(s.narration)}</p>
+      <div class="note"><h3>${icon("lightbulb")}策展註解</h3><p>${esc(s.curator_note)}</p></div>
+      <div class="sources"><h3>${icon("book-open")}來源</h3><ul>${sources}</ul></div>
+    </div>
+  </div>
+  ${folio(i + 3)}
+</section>`;
+  };
+
+  const css = ["web/src/tokens.css", "web/src/print.css"].map(read).join("\n");
+  return `<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<title>${esc(data.title)}｜斷線 48 小時</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Noto+Serif+TC:wght@700&display=block">
+<style>
+${css}
+</style>
+</head>
+<body>
+<section class="sheet sheet--cover" data-light="dusk">
+  <div class="cover-art">${introSvg()}</div>
+  <div class="cover-meta">
+    <p>一位大學生，在原因不明的停電與斷網裡度過 48 小時。</p>
+    <p>《斷線 48 小時》全民國防導論期中創作<br>國立臺灣師範大學 王修佑，2026 年 10 月</p>
+  </div>
+</section>
+
+<section class="sheet sheet--preface" data-light="dusk">
+  <div class="body">
+    <div><h2>策展前言</h2><div class="prose">${intro}</div></div>
+    <div><h3 class="toc-head">六個時刻</h3><ol class="timetable">${scenes.map((s, i) => `<li><time>${esc(s.time)}</time><strong>${esc(s.title)}</strong><small>第 ${i + 3} 頁，${esc(s.pillar)}</small></li>`).join("")}</ol></div>
+  </div>
+  ${folio(2)}
+</section>
+${scenes.map(sceneSheet).join("\n")}
+
+<section class="sheet sheet--closing" data-light="day">
+  <div class="body"><h2>個人反思</h2><div class="prose">${reflection}</div></div>
+  ${folio(scenes.length + 3)}
+</section>
+
+<section class="sheet sheet--closing sheet--statement" data-light="day">
+  <div class="body"><h2>AI 使用聲明</h2><div class="prose">${statement}</div></div>
+  ${folio(scenes.length + 4)}
+</section>
+
+<section class="sheet sheet--closing" data-light="day">
+  <div class="body">
+    <h2>參考資料</h2>
+    <div>
+      <ol class="refs">${refs.map((r) => `<li><a href="${esc(r.url)}">${linkText(r.title)}</a><small>引用於${r.uses.map((u) => `第 ${u.n} 幕${u.pages ? `（${esc(u.pages)}）` : ""}`).join("、")}</small><small>${esc(r.url)}</small></li>`).join("")}</ol>
+      <div class="colophon">
+        <strong>本作品圖像由 AI 生成，情境為虛構。</strong>
+        <span>${esc(data.title)}，《斷線 48 小時》全民國防導論期中創作（${esc(data.version)}），國立臺灣師範大學 王修佑。</span>
+        <span>圖像：Google Gemini；文字協作：Claude。字體 Noto Serif TC、Noto Sans TC（SIL Open Font License），圖示 Lucide。${checked ? `連結查核日期：${esc(checked)}。` : ""}</span>
+        <span>網頁版內容與本 PDF 相同，另含 10 秒開場動畫與捲動時間軸。</span>
+      </div>
+    </div>
+  </div>
+  ${folio(scenes.length + 5)}
+</section>
+</body>
+</html>
+`;
 }
 
 await build();

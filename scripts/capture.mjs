@@ -5,7 +5,7 @@ import sharp from "sharp";
 
 const [url = "http://localhost:4848/index.html", out = ".impeccable/review"] = process.argv.slice(2);
 const chrome = process.env.CHROME_PATH || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
-const browser = await puppeteer.launch({ executablePath: chrome, headless: true });
+const browser = await puppeteer.launch({ executablePath: chrome, headless: true, args: process.env.CI ? ["--no-sandbox"] : [] });
 
 for (const [name, w, h, mobile] of [["desktop", 1440, 900, false], ["mobile", 390, 844, true]]) {
   const page = await browser.newPage();

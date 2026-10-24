@@ -1,0 +1,9 @@
+{
+  // Cloudflare Workers 靜態資產：只發布 dist/（由 scripts/package.mjs 產生）
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "military-project-48h",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}

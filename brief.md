@@ -65,11 +65,11 @@
 | A1 編劇 | 6 幕旁白、策展註解、前言、個人反思 | `content/scenes.json`、`intro.md`、`reflection.md` | 已完成 |
 | A2 研究查核 | 每幕官方或可信來源 | `research/sources.md`、scenes.json 的 sources | 已完成 |
 | A3 視覺提示詞 | 角色卡、畫風卡、6 幕 prompt | `visual/prompts.md` | 已完成 |
-| A4 生圖與選圖 | Gemini 生成；Claude Code 依第 3 節選圖 | `visual/images/`、`visual/process-log.md` | 圖已生成，**待選圖、待寫 process-log** |
+| A4 生圖與選圖 | Gemini 生成；Claude Code 依第 3 節選圖 | `visual/images/`、`visual/process-log.md` | 已完成 |
 | A5 開場動畫 | 10 秒 SVG：城市熄燈、訊號消失、片名浮現 | `motion/intro.svg` | 已完成 |
-| A6 網頁手冊 | 捲動式單頁手冊 | `web/index.html` | **待辦** |
-| A7 PDF 排版 | 與網頁同內容的 A4 橫式 PDF | `output/handbook.pdf` | **待辦** |
-| A8 整合與品管 | 檢查、撰寫 AI 使用聲明、打包 | `content/ai-statement.md`、`output/submission/` | **待辦** |
+| A6 網頁手冊 | 捲動式單頁手冊 | `web/index.html` | 已完成 |
+| A7 PDF 排版 | 與網頁同內容的 A4 橫式 PDF | `output/handbook.pdf` | 已完成 |
+| A8 整合與品管 | 檢查、撰寫 AI 使用聲明、打包 | `content/ai-statement.md`、`output/submission/` | 已完成（見 `output/qa-report.md`） |
 
 **共同規則**
 - 拿不準的內容標記 `TODO:`，不要自行編造事實、數字或來源。
@@ -84,15 +84,15 @@
 
 ## 6. 檢查清單（A8，全部通過才打包）
 
-- [ ] 旁白第一人稱 100–150 字；策展註解 50–80 字
-- [ ] 每幕至少 1 個能打開的可信來源
-- [ ] 沒有指名任何國家、沒有恐嚇語氣
-- [ ] 個人反思與 `reflection.md` 一致
-- [ ] AI 使用聲明：工具（Claude、Gemini）、用途、prompt 範例
-- [ ] 6 張圖主角一致；無武器、軍人、國旗、亂碼
-- [ ] 網頁、PDF、動畫色票與字體一致
-- [ ] `index.html` 單檔離線可開、手機可讀、開場動畫可略過
-- [ ] PDF 與網頁內容一致、圖片清晰、小於 20 MB
-- [ ] 繳交包：`index.html`、`handbook.pdf`
+- [x] 旁白第一人稱 100–150 字；策展註解 50–80 字
+- [x] 每幕至少 1 個能打開的可信來源
+- [x] 沒有指名任何國家、沒有恐嚇語氣
+- [x] 個人反思與 `reflection.md` 一致
+- [x] AI 使用聲明：工具（Claude、Gemini）、用途、prompt 範例
+- [x] 6 張圖主角一致；無武器、軍人、國旗、亂碼
+- [x] 網頁、PDF、動畫色票與字體一致
+- [x] `index.html` 單檔離線可開、手機可讀、開場動畫可略過
+- [x] PDF 與網頁內容一致、圖片清晰、小於 20 MB
+- [x] 繳交包：`index.html`、`handbook.pdf`
 
 **備案**：老師只收 PDF → 以 PDF 為主件。某幕 3 版都不合格 → 記在 process-log，回報要重生哪一幕。

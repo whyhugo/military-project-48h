@@ -13,5 +13,13 @@ DO_NOT_TRACK = "1"
 _.path = ["{{config_root}}/node_modules/.bin"]
 
 [tasks.build]
-description = "產生 web/index.html 與 output/handbook.pdf"
-run = "node scripts/build.mjs"
+description = "產生 web/index.html、output/handbook.pdf，並打包 output/submission/ 與 dist/"
+run = "node scripts/build.mjs && node scripts/pdf.mjs && node scripts/package.mjs"
+
+[tasks.qa]
+description = "A8 檢查：內容規則、網頁與 PDF 文字一致、離線開啟"
+run = [
+  "node scripts/check.mjs",
+  "uv run --no-project --with pypdfium2 python -I scripts/qa_content.py",
+  "node scripts/qa_offline.mjs",
+]
