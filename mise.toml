@@ -10,10 +10,12 @@ UV_PYTHON_INSTALL_DIR = "{{config_root}}/.cache/uv-python"
 PLAYWRIGHT_BROWSERS_PATH = "{{config_root}}/.cache/ms-playwright"
 DISABLE_TELEMETRY = "1"
 DO_NOT_TRACK = "1"
+WRANGLER_SEND_METRICS = "false"
+WRANGLER_LOG_PATH = "{{config_root}}/.cache/wrangler-logs"
 _.path = ["{{config_root}}/node_modules/.bin"]
 
 [tasks.build]
-description = "產生 web/index.html、output/handbook.pdf，並打包 output/submission/ 與 dist/"
+description = "產生 web/index.html、output/handbook.pdf，並打包 output/submission/（Cloudflare 直接發布這個資料夾）"
 run = "node scripts/build.mjs && node scripts/pdf.mjs && node scripts/package.mjs"
 
 [tasks.qa]
@@ -22,4 +24,5 @@ run = [
   "node scripts/check.mjs",
   "uv run --no-project --with pypdfium2 python -I scripts/qa_content.py",
   "node scripts/qa_offline.mjs",
+  "node scripts/qa_scrollback.mjs",
 ]

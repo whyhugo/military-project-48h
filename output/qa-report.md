@@ -2,7 +2,7 @@
 
 檢查日期：2026-10-24　檢查對象：`web/index.html`、`output/handbook.pdf`（11 頁，4.46 MB）
 
-自動檢查可重跑：`mise run qa`（`scripts/check.mjs`、`scripts/qa_content.py`、`scripts/qa_offline.mjs`）。
+自動檢查可重跑：`mise run qa`（`scripts/check.mjs`、`scripts/qa_content.py`、`scripts/qa_offline.mjs`、`scripts/qa_scrollback.mjs`）。
 
 | # | 檢查項目（brief 第 6 節） | 結果 | 依據 |
 | --- | --- | --- | --- |
@@ -21,6 +21,7 @@
 
 - 第 4 幕 `image_alt` 原寫兩人「站在」診所前，圖中室友是坐著，已改為相符的描述（無障礙替代文字要和圖一致）。
 - 封面與頁尾署名改為「國立臺灣師範大學 王修佑」。
+- 往上捲時米白光層會閃現在夜藍段落上（快速換段時中斷的淡入沒有歸零），已修正光層交叉淡入；`qa_scrollback.mjs` 以 90、400、1200 px 三種步進往上捲，修正前 41 次閃現，修正後 0 次。
 
 ## 留給學生確認
 

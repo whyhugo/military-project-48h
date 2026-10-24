@@ -26,6 +26,12 @@ jobs:
         run: uv run --no-project --with pypdfium2 python -I scripts/qa_content.py
       - name: 離線開啟
         run: node scripts/qa_offline.mjs
+      - name: 往上捲時光層不閃現
+        run: node scripts/qa_scrollback.mjs
+      - name: Cloudflare 部署設定試跑
+        run: npx wrangler deploy --dry-run
+        env:
+          WRANGLER_SEND_METRICS: "false"
       - name: 單檔檢查
         run: |
           size=$(stat -c %s web/index.html)

@@ -56,16 +56,17 @@
     currentLight = light;
     root.dataset.now = light;
     if (!next) return;
-    gsap.killTweensOf(Object.values(layers));
-    if (reduceMotion || !prev) {
-      Object.values(layers).forEach((el) => gsap.set(el, { opacity: el === next ? 1 : 0 }));
+    const all = Object.values(layers);
+    gsap.killTweensOf(all);
+    if (reduceMotion || !prev || prev === next) {
+      all.forEach((el) => gsap.set(el, { opacity: el === next ? 1 : 0, zIndex: el === next ? 2 : 0 }));
       return;
     }
+    // 只讓上一層墊底、下一層淡入；其餘的光層立刻歸零，避免中斷的淡入留下別段的亮色
+    all.forEach((el) => { if (el !== prev && el !== next) gsap.set(el, { opacity: 0, zIndex: 0 }); });
+    gsap.set(prev, { opacity: 1, zIndex: 1 });
     gsap.set(next, { zIndex: 2 });
-    gsap.set(prev, { zIndex: 1 });
-    gsap.fromTo(next, { opacity: 0 }, { opacity: 1, duration: 1.1, ease: "power2.out", onComplete: () => {
-      Object.values(layers).forEach((el) => { if (el !== next) gsap.set(el, { opacity: 0 }); });
-    } });
+    gsap.to(next, { opacity: 1, duration: 1.1, ease: "power2.out", onComplete: () => gsap.set(prev, { opacity: 0, zIndex: 0 }) });
   }
 
   const lit = gsap.utils.toArray(".page [data-light]");

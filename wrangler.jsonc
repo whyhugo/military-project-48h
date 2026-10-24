@@ -1,9 +1,9 @@
 {
-  // Cloudflare Workers 靜態資產：只發布 dist/（由 scripts/package.mjs 產生）
+  // Cloudflare Workers 靜態資產：只發布已 commit 的 output/submission/（index.html、handbook.pdf）
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "military-project-48h",
   "compatibility_date": "2026-10-01",
   "assets": {
-    "directory": "./dist"
+    "directory": "./output/submission"
   }
 }

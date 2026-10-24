@@ -34,12 +34,16 @@ npx impeccable install --project --providers=claude -y
 | `motion/` | 10 秒 SVG 開場動畫 |
 | `web/` | 網頁手冊（單檔、離線可開） |
 | `output/` | PDF、繳交包 `submission/`、檢查報告 `qa-report.md` |
-| `dist/` | 部署用（不進版控，`mise run build` 產生） |
 
-## 部署（Cloudflare Workers）
+## 部署（Cloudflare Workers Builds）
 
-`wrangler.jsonc` 已設定為只發布 `dist/` 的靜態資產 Worker。
+`wrangler.jsonc` 是只發布靜態資產的 Worker，直接發布已 commit 的 `output/submission/`（`index.html`、`handbook.pdf`）。Cloudflare 的建置環境沒有 Chrome、產不出 PDF，所以**建置在本機做**：改內容後跑 `mise run build`，把 `output/submission/` 一起 commit。CI 會試跑 `wrangler deploy --dry-run` 確認設定有效。
 
-1. 在 Cloudflare 後台建立 API Token（範本「Edit Cloudflare Workers」），記下 Account ID。
-2. 本機第一次部署：`mise run build`，再 `npx wrangler login`（或設定 `CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID` 環境變數），然後 `npx wrangler deploy`。網址會是 `https://military-project-48h.<你的子網域>.workers.dev`。
-3. 若要合併到 main 後自動部署：在 GitHub repo 的 Settings → Secrets 加入 `CLOUDFLARE_API_TOKEN` 與 `CLOUDFLARE_ACCOUNT_ID`，再加一個 deploy workflow（需要時再加）。
+在 Cloudflare 後台設定一次：
+
+1. Workers & Pages → Create → Import a repository，連結 GitHub 並選 `whyhugo/military-project-48h`。
+2. Project name 填 `military-project-48h`（要和 `wrangler.jsonc` 的 `name` 相同）。
+3. Build command 留空；Deploy command 用預設的 `npx wrangler deploy`；Production branch 選 `main`。
+4. （選用）開啟非 production 分支的建置，PR 會得到預覽版網址。
+
+之後每次合併到 `main` 就會自動部署，網址是 `https://military-project-48h.<你的子網域>.workers.dev`。Node 版本由 `.node-version` 指定。
